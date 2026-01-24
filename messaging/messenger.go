@@ -11,12 +11,12 @@ import (
 // Message represents an encrypted message
 type Message struct {
 	ID          string    `json:"id"`
-	SenderID    string    `json:"senderId"`    // "07" + Blake2b(KEM_pk || DSA_pk)
+	SenderID    string    `json:"senderId"` // "07" + Blake2b(KEM_pk || DSA_pk)
 	RecipientID string    `json:"recipientId"`
-	Ciphertext  []byte    `json:"ciphertext"`  // ML-KEM encapsulated + XChaCha20
-	Signature   []byte    `json:"signature"`   // ML-DSA-65 signature
+	Ciphertext  []byte    `json:"ciphertext"` // ML-KEM encapsulated + XChaCha20
+	Signature   []byte    `json:"signature"`  // ML-DSA-65 signature
 	Timestamp   time.Time `json:"timestamp"`
-	TTL         int64     `json:"ttl"`         // Time to live in seconds
+	TTL         int64     `json:"ttl"` // Time to live in seconds
 }
 
 // Messenger handles PQ-encrypted messaging
@@ -74,10 +74,10 @@ type Identity struct {
 	SessionID string `json:"sessionId"` // "07" prefix for PQ
 
 	// ML-KEM-768 keypair (for receiving encrypted messages)
-	KEMPublicKey  []byte `json:"kemPublicKey"`
-	KEMSecretKey  []byte `json:"kemSecretKey"`
+	KEMPublicKey []byte `json:"kemPublicKey"`
+	KEMSecretKey []byte `json:"kemSecretKey"`
 
 	// ML-DSA-65 keypair (for signing messages)
-	DSAPublicKey  []byte `json:"dsaPublicKey"`
-	DSASecretKey  []byte `json:"dsaSecretKey"`
+	DSAPublicKey []byte `json:"dsaPublicKey"`
+	DSASecretKey []byte `json:"dsaSecretKey"`
 }

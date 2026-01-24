@@ -55,11 +55,11 @@ type Config struct {
 
 // NetworkConfig defines network settings
 type NetworkConfig struct {
-	RPCAddr    string `json:"rpcAddr"`
-	P2PAddr    string `json:"p2pAddr"`
-	ChainID    uint64 `json:"chainId"`
-	NetworkID  uint32 `json:"networkId"`
-	BootNodes  []string `json:"bootNodes"`
+	RPCAddr   string   `json:"rpcAddr"`
+	P2PAddr   string   `json:"p2pAddr"`
+	ChainID   uint64   `json:"chainId"`
+	NetworkID uint32   `json:"networkId"`
+	BootNodes []string `json:"bootNodes"`
 }
 
 // EVMConfig defines EVM settings
@@ -98,10 +98,10 @@ type ParsConfig struct {
 
 // StorageConfig defines storage node settings
 type StorageConfig struct {
-	Enabled     bool   `json:"enabled"`
-	MaxSize     uint64 `json:"maxSize"`     // Max storage in bytes
-	RetentionDays int  `json:"retentionDays"`
-	DataDir     string `json:"dataDir"`
+	Enabled       bool   `json:"enabled"`
+	MaxSize       uint64 `json:"maxSize"` // Max storage in bytes
+	RetentionDays int    `json:"retentionDays"`
+	DataDir       string `json:"dataDir"`
 }
 
 // OnionConfig defines onion routing settings
@@ -112,15 +112,15 @@ type OnionConfig struct {
 
 // SessionConfig defines session management settings
 type SessionConfig struct {
-	IDPrefix       string `json:"idPrefix"`       // "07" for PQ sessions
-	KeyRotationDays int   `json:"keyRotationDays"`
+	IDPrefix        string `json:"idPrefix"` // "07" for PQ sessions
+	KeyRotationDays int    `json:"keyRotationDays"`
 }
 
 // WarpConfig defines cross-chain settings
 type WarpConfig struct {
-	Enabled        bool     `json:"enabled"`
-	LuxEndpoint    string   `json:"luxEndpoint"`
-	AllowedChains  []string `json:"allowedChains"`
+	Enabled       bool     `json:"enabled"`
+	LuxEndpoint   string   `json:"luxEndpoint"`
+	AllowedChains []string `json:"allowedChains"`
 }
 
 // CryptoConfig defines cryptographic settings
@@ -151,8 +151,8 @@ type ConsensusConfig struct {
 
 // ValidatorConfig defines validator settings
 type ValidatorConfig struct {
-	MinStake    uint64 `json:"minStake"`
-	MaxCount    int    `json:"maxCount"`
+	MinStake uint64 `json:"minStake"`
+	MaxCount int    `json:"maxCount"`
 }
 
 // Default returns the default configuration
@@ -163,7 +163,7 @@ func Default() *Config {
 		Network: NetworkConfig{
 			RPCAddr:   "127.0.0.1:9650",
 			P2PAddr:   "0.0.0.0:9651",
-			ChainID:   7070,  // Pars chain ID
+			ChainID:   7070, // Pars chain ID
 			NetworkID: 7070,
 		},
 		EVM: EVMConfig{
