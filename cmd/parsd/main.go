@@ -100,7 +100,9 @@ func main() {
 	go func() {
 		<-sigCh
 		logger.Info("shutting down parsd...")
-		cmd.Process.Signal(syscall.SIGTERM)
+		if err := cmd.Process.Signal(syscall.SIGTERM); err != nil {
+			logger.Error("failed to signal luxd", "error", err)
+		}
 	}()
 
 	if err := cmd.Wait(); err != nil {
