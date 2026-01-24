@@ -36,7 +36,7 @@ var (
 func main() {
 	flag.Parse()
 
-	logger := log.NewLogger(os.Stdout, log.LevelInfo)
+	logger := log.New("component", "parsd")
 	logger.Info("starting parsd",
 		"mode", *mode,
 		"datadir", *dataDir,
