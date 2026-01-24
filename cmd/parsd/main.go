@@ -1,10 +1,10 @@
 // parsd - Pars Network Node
 //
-// A Lux node configured for Pars Network with EVM + ParsVM plugins.
+// A Lux node configured for Pars Network with EVM + SessionVM plugins.
 // Post-quantum secure messaging network built on Lux.
 //
 // This is a thin wrapper around luxd that:
-//   - Auto-configures plugin directory with EVM and ParsVM
+//   - Auto-configures plugin directory with EVM and SessionVM
 //   - Sets Pars network defaults (chain ID 7070, PQ crypto)
 //   - Enables Warp for cross-chain messaging
 //
@@ -33,8 +33,8 @@ const (
 
 	// VM IDs (base58 encoded)
 	// These are computed from the VM names
-	EVMID    = "srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy"  // Lux EVM
-	ParsVMID = "2ZbQaVuXHtT7vfJt8FmWEQKAT4NgtPqWEZHg5m3tUvEiSMnQNt" // Pars VM
+	EVMID       = "srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy" // Lux EVM
+	SessionVMID = "speKUgLBX6WRD5cfGeEfLa43LxTXUBckvtv4td6F3eTXvRP48" // Session VM
 )
 
 func main() {
@@ -55,7 +55,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Setup plugins (symlink or copy EVM and ParsVM binaries)
+	// Setup plugins (symlink or copy EVM and SessionVM binaries)
 	if err := setupPlugins(pluginDir, logger); err != nil {
 		logger.Error("failed to setup plugins", "error", err)
 		os.Exit(1)
@@ -123,7 +123,7 @@ func buildLuxdArgs(dataDir, pluginDir string) []string {
 		// Data directory
 		fmt.Sprintf("--data-dir=%s", dataDir),
 
-		// Plugin directory (contains EVM + ParsVM)
+		// Plugin directory (contains EVM + SessionVM)
 		fmt.Sprintf("--plugin-dir=%s", pluginDir),
 
 		// Enable Warp messaging
@@ -152,7 +152,7 @@ func getParsChainConfig() string {
 }`
 }
 
-// setupPlugins ensures EVM and ParsVM binaries are in the plugin directory
+// setupPlugins ensures EVM and SessionVM binaries are in the plugin directory
 func setupPlugins(pluginDir string, logger log.Logger) error {
 	// Check for EVM plugin
 	evmDst := filepath.Join(pluginDir, EVMID)
@@ -169,18 +169,18 @@ func setupPlugins(pluginDir string, logger log.Logger) error {
 		}
 	}
 
-	// Check for ParsVM plugin
-	parsDst := filepath.Join(pluginDir, ParsVMID)
+	// Check for SessionVM plugin
+	parsDst := filepath.Join(pluginDir, SessionVMID)
 	if _, err := os.Stat(parsDst); os.IsNotExist(err) {
-		// Try to find and link ParsVM binary
-		parsSrc, err := findParsVM()
+		// Try to find and link SessionVM binary
+		parsSrc, err := findSessionVM()
 		if err != nil {
-			logger.Warn("ParsVM plugin not found, will use EVM only", "error", err)
+			logger.Warn("SessionVM plugin not found, will use EVM only", "error", err)
 		} else {
 			if err := os.Symlink(parsSrc, parsDst); err != nil && !os.IsExist(err) {
-				return fmt.Errorf("failed to link ParsVM plugin: %w", err)
+				return fmt.Errorf("failed to link SessionVM plugin: %w", err)
 			}
-			logger.Info("linked ParsVM plugin", "src", parsSrc, "dst", parsDst)
+			logger.Info("linked SessionVM plugin", "src", parsSrc, "dst", parsDst)
 		}
 	}
 
@@ -229,13 +229,13 @@ func findEVM() (string, error) {
 	return "", fmt.Errorf("EVM plugin not found")
 }
 
-// findParsVM searches for the ParsVM plugin binary
-func findParsVM() (string, error) {
+// findSessionVM searches for the SessionVM plugin binary
+func findSessionVM() (string, error) {
 	// Check common locations
 	locations := []string{
-		filepath.Join(os.Getenv("HOME"), ".pars", "plugins", ParsVMID),
+		filepath.Join(os.Getenv("HOME"), ".pars", "plugins", SessionVMID),
 		filepath.Join(os.Getenv("GOPATH"), "bin", "parsvm"),
-		"/usr/local/lib/pars/plugins/" + ParsVMID,
+		"/usr/local/lib/pars/plugins/" + SessionVMID,
 	}
 
 	for _, loc := range locations {
@@ -244,5 +244,5 @@ func findParsVM() (string, error) {
 		}
 	}
 
-	return "", fmt.Errorf("ParsVM plugin not found")
+	return "", fmt.Errorf("SessionVM plugin not found")
 }
