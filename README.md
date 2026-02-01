@@ -23,7 +23,7 @@ Post-quantum secure messaging network built on Lux SDK.
 │   └─────────────────────┘     └─────────────────────┘   │
 ├─────────────────────────────────────────────────────────┤
 │                      Warp Bridge                        │
-│              (Cross-chain with Lux mainnet)             │
+│              (Cross-chain messaging layer)              │
 ├─────────────────────────────────────────────────────────┤
 │                    Quasar Consensus                     │
 │           (BLS + Ringtail PQ threshold finality)        │
@@ -31,22 +31,6 @@ Post-quantum secure messaging network built on Lux SDK.
 │                     lux/crypto                          │
 │        (ML-DSA, ML-KEM, Ringtail, BLS - GPU accel)      │
 └─────────────────────────────────────────────────────────┘
-```
-
-## Modes
-
-### L1 Sovereign
-Independent chain with own validators. Uses Warp to bridge to Lux mainnet.
-
-```bash
-parsd --mode=l1 --warp=true
-```
-
-### L2 Rollup
-Settles on Lux mainnet with shared security.
-
-```bash
-parsd --mode=l2 --warp=true
 ```
 
 ## Quick Start
@@ -58,11 +42,9 @@ make build
 # Run local devnet
 make devnet
 
-# Run L1 sovereign
+# Run chain
 make run
 
-# Run L2 rollup
-make run-l2
 ```
 
 ## Configuration
@@ -71,11 +53,10 @@ Default config location: `~/.pars/config.json`
 
 ```json
 {
-  "mode": "l1",
   "network": {
-    "chainId": 7070,
-    "rpcAddr": "127.0.0.1:9650",
-    "p2pAddr": "0.0.0.0:9651"
+    "chainId": 494949,
+    "rpcAddr": "127.0.0.1:9630",
+    "p2pAddr": "0.0.0.0:9631"
   },
   "evm": {
     "enabled": true,
@@ -102,7 +83,6 @@ Default config location: `~/.pars/config.json`
   },
   "warp": {
     "enabled": true,
-    "luxEndpoint": "https://api.lux.network"
   },
   "crypto": {
     "gpuEnabled": true,
@@ -130,7 +110,7 @@ All crypto from `lux/crypto` - one implementation, all platforms:
 | XChaCha20-Poly1305 | AEAD | - |
 | Blake2b/Blake3 | Hashing | - |
 
-GPU acceleration via Metal (macOS/iOS) and CUDA (Linux).
+GPU acceleration via GPU with custom Metal (macOS/iOS) and CUDA (Linux) kernels.
 
 ## Session IDs
 
