@@ -5,11 +5,11 @@ Post-quantum secure messaging network built on Lux SDK.
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                          parsd                               │
-│                   (Pars Network Node)                        │
-├─────────────────────────────────────────────────────────────┤
-│                    Virtual Machines                          │
+┌────────────────────────────────────────────────────────────┐
+│                          parsd                             │
+│                   (Pars Network Node)                      │
+├────────────────────────────────────────────────────────────┤
+│                    Virtual Machines                        │
 │  ┌─────────────────────┐    ┌─────────────────────┐        │
 │  │        EVM          │    │       ParsVM        │        │
 │  │  (Smart Contracts)  │    │   (PQ Messaging)    │        │
@@ -21,16 +21,16 @@ Post-quantum secure messaging network built on Lux SDK.
 │  │ • Ringtail (0x0700) │    │ • Session mgmt      │        │
 │  │ • FHE (0x0800)      │    │                     │        │
 │  └─────────────────────┘    └─────────────────────┘        │
-├─────────────────────────────────────────────────────────────┤
-│                      Warp Bridge                             │
-│              (Cross-chain with Lux mainnet)                  │
-├─────────────────────────────────────────────────────────────┤
-│                    Quasar Consensus                          │
-│           (BLS + Ringtail PQ threshold finality)            │
-├─────────────────────────────────────────────────────────────┤
-│                     lux/crypto                               │
-│        (ML-DSA, ML-KEM, Ringtail, BLS - GPU accel)          │
-└─────────────────────────────────────────────────────────────┘
+├────────────────────────────────────────────────────────────┤
+│                      Warp Bridge                           │
+│              (Cross-chain with Lux mainnet)                │
+├────────────────────────────────────────────────────────────┤
+│                    Quasar Consensus                        │
+│           (BLS + Ringtail PQ threshold finality)           │
+├────────────────────────────────────────────────────────────┤
+│                     lux/crypto                             │
+│        (ML-DSA, ML-KEM, Ringtail, BLS - GPU accel)         │
+└────────────────────────────────────────────────────────────┘
 ```
 
 ## Modes
