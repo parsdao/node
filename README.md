@@ -11,8 +11,8 @@ Post-quantum secure messaging network built on Lux SDK.
 ├────────────────────────────────────────────────────────────┤
 │                    Virtual Machines                        │
 │  ┌─────────────────────┐    ┌─────────────────────┐        │
-│  │        EVM          │    │       ParsVM        │        │
-│  │  (Smart Contracts)  │    │   (PQ Messaging)    │        │
+│  │         EVM         │    │      SessionVM      │        │
+│  │  (Smart Contracts)  │    │    (PQ Messaging)   │        │
 │  ├─────────────────────┤    ├─────────────────────┤        │
 │  │ PQ Precompiles:     │    │ • ML-KEM key exch   │        │
 │  │ • ML-DSA (0x0601)   │    │ • ML-DSA signatures │        │
