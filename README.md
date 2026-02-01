@@ -5,32 +5,32 @@ Post-quantum secure messaging network built on Lux SDK.
 ## Architecture
 
 ```
-┌────────────────────────────────────────────────────────────┐
-│                          parsd                             │
-│                   (Pars Network Node)                      │
-├────────────────────────────────────────────────────────────┤
-│                    Virtual Machines                        │
-│  ┌─────────────────────┐    ┌─────────────────────┐        │
-│  │         EVM         │    │      SessionVM      │        │
-│  │  (Smart Contracts)  │    │    (PQ Messaging)   │        │
-│  ├─────────────────────┤    ├─────────────────────┤        │
-│  │ PQ Precompiles:     │    │ • ML-KEM key exch   │        │
-│  │ • ML-DSA (0x0601)   │    │ • ML-DSA signatures │        │
-│  │ • ML-KEM (0x0603)   │    │ • Onion routing     │        │
-│  │ • BLS (0x0B00)      │    │ • Storage nodes     │        │
-│  │ • Ringtail (0x0700) │    │ • Session mgmt      │        │
-│  │ • FHE (0x0800)      │    │                     │        │
-│  └─────────────────────┘    └─────────────────────┘        │
-├────────────────────────────────────────────────────────────┤
-│                      Warp Bridge                           │
-│              (Cross-chain with Lux mainnet)                │
-├────────────────────────────────────────────────────────────┤
-│                    Quasar Consensus                        │
-│           (BLS + Ringtail PQ threshold finality)           │
-├────────────────────────────────────────────────────────────┤
-│                     lux/crypto                             │
-│        (ML-DSA, ML-KEM, Ringtail, BLS - GPU accel)         │
-└────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                          parsd                          │
+│                   (Pars Network Node)                   │
+├─────────────────────────────────────────────────────────┤
+│                    Virtual Machines                     │
+│   ┌─────────────────────┐     ┌─────────────────────┐   │
+│   │         EVM         │     │      SessionVM      │   │
+│   │  (Smart Contracts)  │     │    (PQ Messaging)   │   │
+│   ├─────────────────────┤     ├─────────────────────┤   │
+│   │ PQ Precompiles:     │     │ • ML-KEM key exch   │   │
+│   │ • ML-DSA (0x0601)   │     │ • ML-DSA signatures │   │
+│   │ • ML-KEM (0x0603)   │     │ • Onion routing     │   │
+│   │ • BLS (0x0B00)      │     │ • Storage nodes     │   │
+│   │ • Ringtail (0x0700) │     │ • Session mgmt      │   │
+│   │ • FHE (0x0800)      │     │                     │   │
+│   └─────────────────────┘     └─────────────────────┘   │
+├─────────────────────────────────────────────────────────┤
+│                      Warp Bridge                        │
+│              (Cross-chain with Lux mainnet)             │
+├─────────────────────────────────────────────────────────┤
+│                    Quasar Consensus                     │
+│           (BLS + Ringtail PQ threshold finality)        │
+├─────────────────────────────────────────────────────────┤
+│                     lux/crypto                          │
+│        (ML-DSA, ML-KEM, Ringtail, BLS - GPU accel)      │
+└─────────────────────────────────────────────────────────┘
 ```
 
 ## Modes
