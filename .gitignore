@@ -31,3 +31,4 @@ config.local.json
 
 # Data directory
 .pars/
+parsd
