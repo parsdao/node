@@ -1,0 +1,15 @@
+{
+  "vmID": "speKUgLBX6WRD5cfGeEfLa43LxTXUBckvtv4td6F3eTXvRP48",
+  "config": {
+    "sessionTTL": 86400,
+    "maxMessages": 10000,
+    "maxChannels": 1000,
+    "retentionDays": 30,
+    "idPrefix": "07",
+    "pqCrypto": {
+      "keyExchange": "ML-KEM-768",
+      "signature": "ML-DSA-65"
+    }
+  },
+  "timestamp": 1737676800
+}
